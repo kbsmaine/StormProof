@@ -29,3 +29,9 @@ Edit the variables at the top of assets/css/styles.css.
 
 HOSTING
 This is a static website and works with GitHub Pages, Netlify, Cloudflare Pages, Squarespace code hosting, or ordinary web hosting.
+
+PHOTO UPDATE
+------------
+All 32 supplied project photos were optimized and added under assets/images/projects/.
+The home, services, about and projects pages now use real project photography.
+The Projects page includes category filters and a click-to-enlarge photo viewer.

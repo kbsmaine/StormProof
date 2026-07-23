@@ -47,3 +47,49 @@ if (quoteForm) {
 
 const year = document.querySelectorAll('[data-year]');
 year.forEach(el => el.textContent = new Date().getFullYear());
+
+
+const lightbox = document.querySelector('.lightbox');
+if (lightbox) {
+  const lightboxImage = lightbox.querySelector('img');
+  const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+  const lightboxClose = lightbox.querySelector('.lightbox-close');
+  let previousFocus = null;
+
+  const openLightbox = card => {
+    previousFocus = card;
+    lightboxImage.src = card.dataset.image;
+    lightboxImage.alt = card.dataset.title || 'Storm Proof Roofing project';
+    lightboxCaption.textContent = card.dataset.title || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+    lightboxClose.focus();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    lightboxImage.src = '';
+    if (previousFocus) previousFocus.focus();
+  };
+
+  document.querySelectorAll('[data-lightbox]').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card));
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(card);
+      }
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+}

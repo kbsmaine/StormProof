@@ -1,0 +1,44 @@
+STORM PROOF WEBSITE PHOTO MAP
+=============================
+
+All 32 supplied photos were optimized and added to assets/images/projects/.
+
+ROOFING
+- architectural-shingle-detail.jpg
+- completed-asphalt-roof.jpg
+- ice-water-protection.jpg
+- large-residential-roof.jpg
+- low-slope-roofing-prep.jpg
+- metal-roofing-system.jpg
+- new-roof-decking.jpg
+- ridge-cap-detail.jpg
+- roof-deck-preparation.jpg
+- roof-replacement-progress.jpg
+- roof-system-installation.jpg
+- shingle-installation-progress.jpg
+- shingle-roof-installation.jpg
+- tear-off-deck-inspection.jpg
+- valley-roof-detail.jpg
+
+SIDING / EXTERIOR ENVELOPE
+- exterior-envelope-prep.jpg
+- exterior-siding-progress.jpg
+- front-elevation-siding.jpg
+- gable-siding-installation.jpg
+- garage-siding-preparation.jpg
+- vinyl-siding-installation.jpg
+- weather-barrier-installation.jpg
+
+FRAMING
+- full-building-framing.jpg
+- new-construction-exterior.jpg
+- post-frame-construction.jpg
+- wall-framing-preparation.jpg
+- wall-reconstruction.jpg
+- wall-sheathing-framing.jpg
+
+DOORS & WINDOWS
+- exterior-window-renovation.jpg
+- new-window-opening.jpg
+- roof-window-repair.jpg
+- window-flashing-installation.jpg
