@@ -25,23 +25,65 @@ filters.forEach(btn => btn.addEventListener('click', () => {
 
 const quoteForm = document.querySelector('#quoteForm');
 if (quoteForm) {
-  quoteForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const d = new FormData(quoteForm);
-    const lines = [
-      'Storm Proof Roofing estimate request',
-      `Name: ${d.get('name') || ''}`,
-      `Phone: ${d.get('phone') || ''}`,
-      `Town: ${d.get('town') || ''}`,
-      `Service: ${d.get('service') || ''}`,
-      `Timeline: ${d.get('timeline') || ''}`,
-      `Project details: ${d.get('details') || ''}`
-    ];
-    const body = encodeURIComponent(lines.join('\n'));
-    const sms = `sms:2077101027?&body=${body}`;
-    document.querySelector('#quoteStatus').textContent = 'Your text message is ready to send.';
-    document.querySelector('#quoteStatus').classList.add('success');
-    window.location.href = sms;
+  quoteForm.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    if (!quoteForm.reportValidity()) return;
+
+    const status = quoteForm.querySelector('#quoteStatus');
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.innerHTML : '';
+    const endpoint = quoteForm.dataset.emailEndpoint;
+    const formData = new FormData(quoteForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    payload._subject = quoteForm.dataset.subject || payload._subject || 'New Storm Proof Roofing Request';
+    payload._template = 'table';
+    payload._captcha = 'false';
+    payload.page = document.title;
+    payload.page_url = window.location.href;
+
+    if (status) {
+      status.textContent = 'Sending your request...';
+      status.classList.remove('success', 'error');
+    }
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.success === false || result.success === 'false') {
+        throw new Error(result.message || 'The request could not be sent.');
+      }
+
+      quoteForm.reset();
+      if (status) {
+        status.textContent = 'Thank you — your request was sent successfully.';
+        status.classList.add('success');
+      }
+    } catch (error) {
+      console.error('Form submission failed:', error);
+      if (status) {
+        status.textContent = 'We could not send the form. Please call 207-710-1027.';
+        status.classList.add('error');
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      }
+    }
   });
 }
 

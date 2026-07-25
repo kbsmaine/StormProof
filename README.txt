@@ -11,7 +11,7 @@ PAGES
 - quote.html: detailed estimate request
 
 IMPORTANT
-The estimate forms prepare a text message to 207-710-1027. They do not store or send data through a third-party form service.
+The estimate forms send submissions to krpelletier33@gmail.com through FormSubmit using AJAX, so visitors stay on the website.
 
 ADDING REAL PROJECT PHOTOS
 1. Place photos inside assets/images/
@@ -20,6 +20,12 @@ ADDING REAL PROJECT PHOTOS
    with:
    assets/images/your-photo.jpg
 3. Update the alt text and project title.
+
+FORM EMAIL
+The forms currently send to krpelletier33@gmail.com. To change it, replace that email in contact.html and quote.html.
+
+FIRST-TIME ACTIVATION
+Submit either form once after publishing, then open the activation email from FormSubmit and click the confirmation link. Until confirmed, live form emails will not be delivered.
 
 CHANGING THE PHONE NUMBER
 Search all files for 207-710-1027 and 2077101027, then replace both formats.
